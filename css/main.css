@@ -6,12 +6,27 @@
    --light: #eee;
    --red: #ce1c1c;
    --yellow: #f6ed6c;
+   --business: #8a1931;
+   --personal: #ce811c;
+
+   --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+   --business-glow: 0px 0px 4px rgba(138, 25, 49, 0.75);
+   --personal-glow: 0px 0px 4px rgba(206, 129, 28, 0.75);;
 }
 
 *{
    box-sizing: border-box;
    margin: 0;
+   padding: 0;
    font-family: 'Poppins', sans-serif;
+}
+
+input:not([type="radio"]):not([type="checkbox"]), button{
+   border: none;
+   appearance: none;
+   outline: none;
+   background: none;
+   cursor: initial;
 }
 
 body{
@@ -22,47 +37,142 @@ body{
    color: #fff;
 }
 
+section{
+   margin-top: 2rem;
+   margin-bottom: 2rem;
+   padding-left: 1.5rem;
+   padding-right: 1.5rem;
+}
+
 header{
-   padding: 2rem 1rem;
    max-width: 800px;
    width: 100%;
    margin: 0 auto;
 }
 
-header h1{
-   text-align: center;
-   font-size: 2.5rem;
-   font-weight: 700;
-   color: var(--gray);
-   margin-bottom: 1rem;
+main{
+   flex: 1 1 0%;
+   max-width: 800px;
+   width: 100%;
+   margin: 0 auto;
 }
 
-#new-task-form{
+h3{    
+   font-size: 1.5rem;
+   font-weight: 300;
+   margin-bottom: 1rem;
+   color: var(--gray);
+}
+
+h4{
+   color: var(--gray);
+   font-weight: 400;
+   margin-bottom: 1rem;
+   text-align: center;
+}
+
+.greeting .title{
    display: flex;
 }
 
-input, button{
-   appearance: none;
-   border: none;
-   outline: none;
-   background: none;
-}
-
-#new-task-input{
+.greeting .title input{
+   margin-left: 0.5rem;
    flex: 1 1 0%;
-   background-color: var(--darker);
-   padding: 1rem;
-   border-radius: 1rem;
-   margin-right: 1rem;
+   min-width: 0;
+}
+
+.greeting .title,
+.greeting .title input{
+   font-size: 1.5rem;
+   font-weight: 700;
    color: var(--light);
+}
+
+.create-todo input[type="text"]{
+   display: block;
+   width: 100%;
    font-size: 1.25rem;
+   padding: 1rem 1.5rem;
+   color: var(--light);
+   background-color: var(--darker);
+   border-radius: 1rem;
+   box-shadow: var(--shadow);
+   margin-bottom: 1.5rem;
 }
 
-#new-task-input::placeholder{
-   color: var(--gray);
+.create-todo .options{
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   grid-gap: 1rem;
+   margin-bottom: 1.5rem;
 }
 
-#new-task-submit{
+.create-todo .options label{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   padding: 1.5rem;
+   background-color: var(--darker);
+   border-radius: 1rem;
+   box-shadow: var(--shadow);
+   cursor: pointer;
+}
+
+input[type="radio"],
+input[type="checkbox"]{
+   display: none;
+}
+
+.bubble{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   border: 2px solid var(--business);
+   box-shadow: var(--business-glow);
+}
+
+.bubble.personal{
+   border-color: var(--personal);
+   box-shadow: var(--personal-glow);
+}
+
+.bubble::after{
+   content: "";
+   display: block;
+   opacity: 0;
+   width: 0px;
+   height: 0px;
+   background-color: var(--business);
+   box-shadow: var(--business-glow);
+   border-radius: 50%;
+   transition: 0.2s ease-in-out;
+}
+
+.bubble.personal::after{
+   background-color: var(--personal);
+   box-shadow: var(--personal-glow);
+}
+
+input:checked ~ .bubble::after{
+   width: 10px;
+   height: 10px;
+   opacity: 1;
+}
+
+.create-todo .options label div{
+   font-size: 1.125rem;
+   margin-top: 1rem;
+}
+
+.create-todo input[type="submit"]{
+   display: block;
+   width: 100%;
+   font-size: 1.125rem;
+   padding: 1rem 1.5rem;
    color: var(--red);
    font-size: 1.25rem;
    font-weight: 700;
@@ -73,47 +183,52 @@ input, button{
    transition: 0.4s;
 }
 
-#new-task-submit:hover{
+.create-todo input[type="submit"]:hover{
    opacity: 0.8;
 }
 
-#new-task-submit:active{
+.create-todo input[type="submit"]:active{
    opacity: 0.6;
 }
 
-main{
-   flex: 1 1 0%;
-   padding: 2rem 1rem;
-   max-width: 800px;
-   width: 100%;
-   margin: 0 auto;
+.todo-list .list{
+   margin: 1rem 0;
 }
 
-.task-list{
-   padding: 1rem;
-}
-
-.task-list h2{
-      font-size: 1.5rem;
-      font-weight: 300;
-      color: var(--gray);
-      margin-bottom: 1rem;
-}
-
-#tasks .task{
-   display: flex;
-   justify-content: space-between;
-   background-color: var(--darkest);
-   padding: 1rem;
-   border-radius: 1rem;
+.todo-list h2{
+   font-size: 1.5rem;
+   font-weight: 300;
+   color: var(--gray);
    margin-bottom: 1rem;
 }
 
-#tasks .task .content{
+.todo-list .todo-item{
+   display: flex;
+   align-items: center;
+   background-color: var(--darkest);
+   padding: 1rem;
+   border-radius: 1rem;
+   box-shadow: var(--shadow);
+   margin-bottom: 1rem;
+}
+
+.todo-item label{
+   display: block;
+   margin-right: 1rem;
+   cursor: pointer;
+}
+
+.todo-item .todo-content{
    flex: 1 1 0%;
 }
 
-#tasks .task .content .text{
+.todo-item .todo-content input{
+   color: var(--light);
+   font-size: 1.125rem;
+}
+
+/*
+.todo-item .todo-content input{
    color: var(--light);
    font-size: 1.125rem;
    width: 100%;
@@ -121,33 +236,48 @@ main{
    transition: 0.4s;
 }
 
-#tasks .task .content .text:not(:read-only){
+.todo-item .todo-content input:not(:read-only){
    color: var(--red);
 }
+*/
 
-.task .actions button{
+.todo-item .actions{
+   display: flex;
+   align-items: center;
+}
+
+.todo-item .actions button{
+   display: block;
    cursor: pointer;
-   margin: 0 0.5rem;
+   padding: 0.5rem;
    font-size: 1.125rem;
    font-weight: 700;
    text-transform: uppercase;
-   transition: 0.4s;
+   transition: 0.2s ease-in-out;
 }
 
-.task .actions button:hover{
-   opacity: 0.8;
-}
 
-.task .actions button:active{
+.todo-item.actions button:hover{
+   opacity: 0.75;
+}
+/*
+.todo-item.actions button:active{
    opacity: 0.6;
 }
+*/
 
-.task .actions .edit{
+.todo-item .actions .edit{
+   margin-right: 0.5rem;
    background-image: linear-gradient(to right, var(--yellow), var(--red));
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
 }
 
-.task .actions .delete{
+.todo-item .actions .delete{
    color: crimson;
+}
+
+.todo-item.done .todo-content input {
+   text-decoration: line-through;
+   color: var(--gray);
 }
