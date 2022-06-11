@@ -11,23 +11,31 @@ window.addEventListener('load', () => {
       localStorage.setItem('username', e.target.value);
    })
 
+   DisplayTodos();
+
    newTodoForm.addEventListener('submit', e => {
       e.preventDefault();
 
-      const todo = {
-         content: e.target.elements.content.value,
-         category: e.target.elements.category.value,
-         done: false,
-         createdAt: new Date().getTime()
+      console.log(e.target.elements.content.value);
+      if (e.target.elements.content.value !== '' && e.target.elements.category.value !== '') {
+
+         const todo = {
+            content: e.target.elements.content.value,
+            category: e.target.elements.category.value,
+            done: false,
+            createdAt: new Date().getTime()
+         }
+
+         todos.push(todo);
+
+         localStorage.setItem('todos', JSON.stringify(todos));
+
+         e.target.reset();
+
+         DisplayTodos();
+      } else {
+         alert('Enter category or task name');
       }
-
-      todos.push(todo);
-
-      localStorage.setItem('todos', JSON.stringify(todos));
-
-      e.target.reset();
-
-      DisplayTodos();
    })
 })
 
@@ -49,7 +57,7 @@ function DisplayTodos() {
       const deleteButton = document.createElement('button');
 
       input.type = 'checkbox';
-      input.checked = todo.done; //task
+      input.checked = todo.done;
       span.classList.add('bubble');
 
       if (todo.category == 'personal') {

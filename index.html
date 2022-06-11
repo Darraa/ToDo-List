@@ -4,110 +4,68 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/main.css" />
+    <title>Task List 2022</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <title>Task List 2022</title>
+    <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
 
-    <header>
-      <section class="greeting">
-        <h2 class="title">
-          What's up, <input type="text" id="name" placeholder="Name here">
-        </h2>
-      </section>
-    </header>
-
     <main class="app">
 
+      <section class="greeting">
+          <h2 class="title">
+            What's up, <input type="text" id="name" placeholder="Name here" autocomplete="off"/>
+          </h2>
+      </section>
+
       <section class="create-todo">
-        <h3>CREATE A TASK</h3>
+          <h3>CREATE A TASK</h3>
 
-      <form id="new-todo-form"> 
-
-        <input 
-          type="text" 
-          name="content"
-          id="content" 
-          placeholder="What do you have planned?">
+        <form id="new-todo-form"> 
+          <h4>What do you have planned?</h4>
+          <input 
+          autocomplete="off"
+            type="text" 
+            name="content"
+            id="content" 
+            placeholder="e.g. make an app"/>
 
           <h4>Choose a category</h4>
           <div class="options">
 
-            <label>
-            <input 
-            type="radio" 
-            name="category" 
-            id="category1" 
-            value="business">
-            <span class="bubble business"></span>
-            <div>Business</div>
-            </label>
+                <label>
+                  <input 
+                    type="radio" 
+                    name="category" 
+                    id="category1" 
+                    value="business"/>
+                  <span class="bubble business"></span>
+                  <div>Business</div>
+                </label>
 
-            <label>
-            <input 
-            type="radio" 
-            name="category" 
-            id="category2" 
-            value="personal">
-            <span class="bubble personal"></span>
-            <div>Personal</div>
-            </label>
-          </div>
+                <label>
+                  <input 
+                    type="radio" 
+                    name="category" 
+                    id="category2" 
+                    value="personal"/>
+                  <span class="bubble personal"></span>
+                  <div>Personal</div>
+                </label>
+            </div>
 
-        <input 
-          type="submit" 
-          value="Add task">
-      </form>
+          <input 
+            type="submit" 
+            value="Add task"/>
+        </form>
       </section>
 
       <section class="todo-list"> 
-        <h2>Tasks</h2>
+        <h3>TASKS</h3>
 
-        <div class="list" id="todo-list">
-<!--
-          <div class="todo-item"> 
-            <label>
-              <input type="checkbox">
-              <span class="bubble business"></span>
-            </label>
-
-          <div class="todo-content"> 
-            <input 
-              type="text"
-              class="text"
-              value="My business task"
-              readonly>
-          </div>
-
-          <div class="actions">
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
-          </div>
-          </div>
-
-          <div class="todo-item"> 
-            <label>
-              <input type="checkbox">
-              <span class="bubble personal"></span>
-            </label>
-
-          <div class="todo-content"> 
-            <input 
-              type="text"
-              class="text"
-              value="My personal task"
-              readonly>
-          </div>
-
-          <div class="actions">
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
-          </div>
-          </div>-->
-          </div>
+        <div class="list" id="todo-list"></div>
           
       </section>
     </main>
